@@ -21,7 +21,6 @@ const connectDB = async () => {
     if (error.message && error.message.includes("IP")) {
       console.error('HINT: Check if your current IP address is whitelisted in MongoDB Atlas Network Access (0.0.0.0/0).');
     }
-    process.exit(1);
   }
 };
 

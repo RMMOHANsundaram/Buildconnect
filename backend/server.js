@@ -115,10 +115,11 @@ app.get("/api", (req, res) => {
 });
 
 if (require.main === module) {
-  connectDB().then(() => {
-    server.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
+  server.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+  connectDB().catch((err) => {
+    console.error("Initial MongoDB connection error:", err.message);
   });
 } else {
   // For testing
