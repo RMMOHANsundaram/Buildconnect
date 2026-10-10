@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script defer src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Google Translate: hidden toolbar + proper init -->
+    <style>
+      .goog-te-banner-frame, #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+      body { top: 0 !important; }
+      .skiptranslate { display: none !important; }
+      .goog-te-gadget { color: transparent !important; }
+    </style>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        var container = document.getElementById('__google_translate_hidden');
+        if (!container) {
+          container = document.createElement('div');
+          container.id = '__google_translate_hidden';
+          container.style.cssText = 'position:absolute;top:-9999px;left:-9999px;opacity:0;pointer-events:none;';
+          document.body.appendChild(container);
+        }
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, '__google_translate_hidden');
+
+        // Auto-apply saved language preference
+        var savedLang = localStorage.getItem('buildconnect_lang');
+        if (savedLang && savedLang !== 'en') {
+          var checkReady = setInterval(function() {
+            var sel = document.querySelector('.goog-te-combo');
+            if (sel) {
+              clearInterval(checkReady);
+              sel.value = savedLang;
+              sel.dispatchEvent(new Event('change'));
+            }
+          }, 200);
+          setTimeout(function() { clearInterval(checkReady); }, 8000);
+        }
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </body>
+</html>

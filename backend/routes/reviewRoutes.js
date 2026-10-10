@@ -1,0 +1,11 @@
+const express = require("express");
+const { protect, authorize } = require("../middleware/authMiddleware");
+const { getProviderReviews, getServiceReviews, getPackageReviews, createReview, deleteReview } = require("../controllers/reviewController");
+const upload = require("../middleware/uploadMiddleware");
+const router = express.Router();
+router.get("/provider/:providerId", getProviderReviews);
+router.get("/service/:serviceId", getServiceReviews);
+router.get("/package/:packageId", getPackageReviews);
+router.post("/", protect, authorize("customer"), upload.array("media"), createReview);
+router.delete("/:id", protect, deleteReview);
+module.exports = router;

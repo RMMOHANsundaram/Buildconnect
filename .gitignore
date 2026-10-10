@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+dist/
+build/
+.vscode/
+*.log
+backend/.env
+frontend/.env

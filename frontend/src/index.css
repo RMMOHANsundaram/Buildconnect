@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+
+  --color-accent: var(--accent);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-border: var(--border);
+
+  --color-input-background: var(--input-background);
+}
+
+:root {
+  --background: #f8f7f4;
+  --foreground: #1c1c1c;
+
+  --primary: #171717;
+  --primary-foreground: #ffffff;
+
+  --secondary: #f1efe9;
+
+  --accent: #e8751a;
+
+  --muted: #eeeeea;
+  --muted-foreground: #6b6b6b;
+
+  --card: #ffffff;
+  --border: #deddd8;
+
+  --input-background: #ffffff;
+}
+
+.dark {
+  --background: #09090b;
+  --foreground: #fafafa;
+
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+
+  --secondary: #27272a;
+
+  --accent: #e8751a;
+
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+
+  --card: #09090b;
+  --border: #27272a;
+
+  --input-background: #09090b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.theme-blue { --accent: #2563eb; }
+.theme-green { --accent: #16a34a; }
+.theme-purple { --accent: #9333ea; }
+.theme-orange { --accent: #e8751a; }
