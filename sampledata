@@ -1,0 +1,59 @@
+FROM node:20
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 5173
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+
+
+call npm install
+call npm run lint
+if errorlevel 1 exit /b 1
+
+call npm run build
+if errorlevel 1 exit /b 1
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/YOUR_USERNAME/student-task-manager.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Code Check') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
+
+        stage('Build React App') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'dist/**',
+                             fingerprint: true
+        }
+
+        always {
+            echo 'Pipeline execution completed.'
+        }
+    }
+}
