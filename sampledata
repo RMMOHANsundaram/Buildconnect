@@ -48,3 +48,44 @@ pipeline {
         }
     }
 }
+
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/RMMOHANsundaram/pollandvoting.git'
+            }
+        }
+
+        stage('Install dependencies') {
+            steps {
+                dir('pollandvoting') {
+                    bat 'npm install'
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('pollandvoting') {
+                    bat 'npm run build'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'React application built successfully'
+        }
+
+        failure {
+            echo 'React application build failed'
+        }
+    }
+}
